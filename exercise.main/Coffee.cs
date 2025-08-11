@@ -14,19 +14,19 @@ namespace exercise.main
         private string _name;
         private string _variant;
 
-        public Coffee(int id, string sku, decimal price, string name, string variant)
+        public Coffee(string sku, decimal price, string variant)
         {
-            _id = id;
             _sku = sku;
             _price = price;
-            _name = name;
+            _name = "Coffee";
             _variant = variant;
         }
 
-        public int Id { get; set; }
-        public string Sku {  get; set; }
-        public decimal Price { get; set; }
-        public string Name { get; set; }
-        public string Variant { get; set; }
+        public string Sku { get { return _sku; } set { _sku = value; } }
+        public decimal Price { get { return _price; } set { _price = value; } }
+        public int Id { get { return _id; } set { _id = value; } }
+        public string Name { get { return _name; } set { _name = value; } }
+        public string Variant { get { return _variant; } set { _variant = value; } }
+        public decimal TotalCost { get { return _price; } }
     }
 }

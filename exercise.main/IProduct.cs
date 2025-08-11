@@ -11,7 +11,9 @@ namespace exercise.main
         int Id { get; set; }
         string Sku {  get; set; }
         decimal Price { get; set; }
+        decimal TotalCost { get; }
         string Name { get; set; }
         string Variant { get; set; }
+
     }
 }
