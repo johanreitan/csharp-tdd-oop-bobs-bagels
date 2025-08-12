@@ -167,4 +167,66 @@ public class Tests
 
         Assert.That(receiptText.Contains("-- BOB"));
     }
+
+
+    [Test]
+    public void SevenBagelsShouldGiveDiscount()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket(10);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+
+        basket.CalculateDiscount();
+        decimal expected = 2.98m;
+
+        Assert.That(basket.TotalCost, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void ThirteenBagelsShouldGiveDiscount()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket(15);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        
+
+        basket.CalculateDiscount();
+        decimal expected = 4.48m;
+
+        Assert.That(basket.TotalCost, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void TwoBagelsAndCoffeeShouldGiveDiscount()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket();
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.OnionBagel);
+        basket.AddProduct(inventory.CappucinoCoffee);
+
+
+        basket.CalculateDiscount();
+        decimal expected = 1.74m;
+
+        Assert.That(basket.TotalCost, Is.EqualTo(expected));
+    }
 }

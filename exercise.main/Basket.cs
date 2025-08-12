@@ -113,7 +113,35 @@ namespace exercise.main
         }
 
 
+        public void CalculateDiscount()
+        {
+            if (IsTwelveBagels())
+            {
+                //work out discount (adding up price of twelve bagels) that - 3.99
 
+                decimal tempPrice = _products.Where(x => x is Bagel).Take(12).Sum(y => y.TotalCost);
+
+                Discount += (tempPrice - 3.99m);
+                return;
+            }
+            if (IsSixBagels())
+            {
+                decimal tempPrice = _products.Where(x => x is Bagel).Take(6).Sum(y => y.TotalCost);
+                Discount += (tempPrice - 2.49m);
+                return;
+            }
+            if (IsCoffeeAndBagel())
+            {
+                decimal tempPrice = _products.First(x => x is Coffee).TotalCost + _products.First(y => y is Bagel).TotalCost;
+                Discount += (tempPrice - 1.25m);
+                return;
+            }
+        }
+
+        public bool IsCoffeeAndBagel()
+        {
+            return _products.Any(x => x is Bagel) && _products.Any(y => y is Coffee);
+        }
 
         public bool IsTwelveBagels()
         {

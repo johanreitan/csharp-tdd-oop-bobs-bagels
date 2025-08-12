@@ -57,4 +57,23 @@ basket2.AddProduct(i.WhiteCoffee);
 basket2.AddProduct(i.PlainBagel);
 basket2.AddProduct(i.PlainBagel);
 
-basket2.CheckingOut();
+//basket2.CheckingOut();
+
+
+Basket basket3 = new Basket(15);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+basket3.AddProduct(i.PlainBagel);
+
+basket3.CalculateDiscount();
+
+Console.WriteLine(basket3.TotalCost);
