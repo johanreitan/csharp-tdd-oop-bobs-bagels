@@ -12,8 +12,9 @@ public class Tests
     [Test]
     public void AddingOneBagelShouldMakeBasketNotEmpty()
     {
+        Inventory inventory = new Inventory();
         Basket basket = new Basket(4);
-        Bagel b1 = new Bagel("BGLO", 49, "onion");
+        Bagel b1 = inventory.PlainBagel;
 
         basket.AddProduct(b1);
 
@@ -41,7 +42,7 @@ public class Tests
     {
         Basket basket = new Basket(4);
         Bagel b1 = new Bagel("BGLO", 49, "onion");
-        Bagel b2 = new Bagel("BGLP", 49 , "plain");
+        Bagel b2 = new Bagel("BGLP", 49, "plain");
         Bagel b3 = new Bagel("BGLP", 49, "plain");
         Bagel b4 = new Bagel("BGLP", 49, "plain");
         Bagel b5 = new Bagel("BGLP", 49, "plain");
@@ -70,10 +71,12 @@ public class Tests
     [Test]
     public void RemovingItemThatDoesNotExistShouldReturnFalse()
     {
+        Inventory inventory = new Inventory();
+
         Basket basket = new Basket(4);
-        Bagel b1 = new Bagel("BGLO", 49, "onion");
+        Bagel b1 = inventory.PlainBagel;
         basket.AddProduct(b1);
-        
+
 
         Assert.That(basket.RemoveProductById(2), Is.False);
     }
@@ -115,5 +118,53 @@ public class Tests
     {
         Inventory inventory = new Inventory();
         Bagel b1 = inventory.PlainBagel;
+    }
+
+    [Test]
+    public void AddingBagelBySku()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket();
+
+        Bagel b1 = inventory.AddBagelFromSku("BGLE");
+
+        basket.AddProduct(b1);
+
+        Assert.That(basket.Products.Count, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void AddingBagelBySkuThatDoesNotExist()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket();
+
+        Bagel b1 = inventory.AddBagelFromSku("NIGEL");
+
+        basket.AddProduct(b1);
+
+        Assert.That(basket.Products.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void CheckingOutShouldMakeReceipt()
+    {
+        Inventory inventory = new Inventory();
+        Basket basket = new Basket();
+
+        Bagel b1 = inventory.AddBagelFromSku("BGLO");
+        Coffee c1 = inventory.AddCoffeeFromSku("COFB");
+        Bagel b2 = inventory.AddBagelFromSku("BGLP");
+
+        basket.AddProduct(b1);
+        basket.AddProduct(c1);
+        basket.AddProduct(b2);
+
+        Receipt receipt1 = new Receipt(basket.Products, basket.TotalCost);
+        string receiptText = receipt1.ReceiptString();
+
+        
+
+        Assert.That(receiptText.Contains("-- BOB"));
     }
 }

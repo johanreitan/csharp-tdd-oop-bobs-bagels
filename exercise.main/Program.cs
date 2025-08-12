@@ -28,7 +28,33 @@ Inventory i = new Inventory();
 
 Basket b1 = new Basket(4);
 
+Bagel bagel123 = i.PlainBagel;
+bagel123.AddFilling(i.HamFilling);
+
 b1.AddProduct(i.PlainBagel);
 b1.AddProduct(i.LatteCoffee);
+b1.AddProduct(bagel123);
 
 Console.WriteLine(b1.TotalCost);
+
+Console.WriteLine();
+
+b1.CheckOut();
+
+Console.WriteLine();
+Console.WriteLine();
+
+Console.WriteLine("Testing SORTING:");
+
+Basket basket2  = new Basket(10);
+basket2.AddProduct(i.BlackCoffee);
+basket2.AddProduct(i.PlainBagel);
+basket2.AddProduct(i.PlainBagel);
+basket2.AddProduct(i.PlainBagel);
+basket2.AddProduct(i.SesameBagel);
+basket2.AddProduct(i.PlainBagel);
+basket2.AddProduct(i.WhiteCoffee);
+basket2.AddProduct(i.PlainBagel);
+basket2.AddProduct(i.PlainBagel);
+
+basket2.CheckingOut();

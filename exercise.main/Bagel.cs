@@ -25,11 +25,12 @@ namespace exercise.main
             _fillings = new List<Filling>();
         }
 
-        public string Sku { get; set; } 
+        public string Sku { get { return _sku; } set { _sku = value; } }
         public decimal Price { get { return _price; } set { _price = value; } }
-        public int Id { get; set; } 
-        public string Name { get; set; }
-        public string Variant { get; set; }
+        public int Id { get { return _id; } set { _id = value; } }
+        public string Name { get { return _name; } set { _name = value; } }
+        public string Variant { get { return _variant; } set { _variant = value; } }
+
         public List<Filling> Fillings { get { return _fillings; } }
 
         public decimal CostOfFillings { get { return _fillings.Sum(f => f.Price); } }
